@@ -1,4 +1,5 @@
 import CellModel from "./cell-model";
+import { ColorsModel } from "./colors-model";
 
 export default class BoardModel {
      cells: CellModel[][] = [];
@@ -8,9 +9,9 @@ export default class BoardModel {
             const row: CellModel[] = [];
             for (let j = 0; j < 8; j++) {
                 if((i + j) % 2 !== 0) {
-                    row.push(new CellModel()); //Black cells
+                    row.push(new CellModel(this, i, j, ColorsModel.BLACK, null)); //Black cells
                 } else {
-                    row.push(new CellModel()); //White cells
+                    row.push(new CellModel(this, i, j, ColorsModel.WHITE, null)); //White cells
                 }
             } 
             this.cells.push(row);
