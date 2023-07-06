@@ -17,7 +17,7 @@ export default function Board({ board, setBoard }: BoardProps) {
                 <React.Fragment key={nanoid()}>
                     {
                         row.map((cell) => (
-                            <Cell/>
+                            <Cell cell={cell} key={cell.id}/>
                         ))
                     }
                 </React.Fragment>
