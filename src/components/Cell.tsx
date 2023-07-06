@@ -6,6 +6,8 @@ interface CellProps {
 
 export default function Cell({cell}:CellProps) {
     return (
-        <div className={["cell", cell.color].join(' ')}></div>
+        <div className={["cell", cell.color].join(' ')}>
+            {cell.figure}
+        </div>
     );
 }
