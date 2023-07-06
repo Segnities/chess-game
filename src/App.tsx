@@ -2,8 +2,9 @@ import { useEffect, useState } from "react"
 
 import Board from "./components/Board";
 
-import './App.css';
 import BoardModel from "./models/board-model";
+
+import './App.css';
 
 function App() {
   const [board, setBoard] = useState<BoardModel>(new BoardModel());
@@ -24,7 +25,10 @@ function App() {
 
   return (
     <div className="app">
-      <Board />
+      <Board
+        board={board}
+        setBoard={setBoard}
+      />
     </div>
   )
 }
