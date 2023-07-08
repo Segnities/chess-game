@@ -25,7 +25,15 @@ export default class CellModel {
         this.color = color;
         this.figure = figure;
         this.board = board;
-        this.available = false;
         this.id = nanoid();
+        this.available = false;
+    }
+
+    moveFigure(target: CellModel) {
+        if (this.figure && this.figure?.canMove(target)) {
+            this.figure?.moveFigure(target);
+            target.figure = this.figure;
+            this.figure = null;
+        }
     }
 }

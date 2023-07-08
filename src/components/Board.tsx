@@ -16,11 +16,16 @@ export default function Board({ board, setBoard }: BoardProps) {
     const [selectedCell, setSelectedCell] = React.useState<CellModel | null>(null);
 
     const onCellClick = (cell: CellModel) => {
-        if(cell.figure) {
+        if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
+            selectedCell.moveFigure(cell);
+            setSelectedCell(null);
+        }
+
+
+        if (cell.figure) {
             setSelectedCell(cell);
         }
     }
-
 
     const updateBoard = () => {
         const newBoard = board.clone();
@@ -32,10 +37,9 @@ export default function Board({ board, setBoard }: BoardProps) {
         updateBoard();
     }
 
-    React.useEffect(()=> {
+    React.useEffect(() => {
         highlightCells();
     }, [selectedCell])
-
 
     return (
         <div className="board">
@@ -48,7 +52,7 @@ export default function Board({ board, setBoard }: BoardProps) {
                                 cell={cell}
                                 selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
                                 onCellClick={onCellClick}
-                                
+
                             />
                         ))
                     }
