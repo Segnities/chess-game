@@ -21,6 +21,22 @@ export default function Board({ board, setBoard }: BoardProps) {
         }
     }
 
+
+    const updateBoard = () => {
+        const newBoard = board.clone();
+        setBoard(newBoard);
+    }
+
+    const highlightCells = () => {
+        board.highlightCells(selectedCell);
+        updateBoard();
+    }
+
+    React.useEffect(()=> {
+        highlightCells();
+    }, [selectedCell])
+
+
     return (
         <div className="board">
             {board.cells.map((row,) => (

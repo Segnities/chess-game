@@ -38,6 +38,10 @@
     background-color: rgb(47, 109, 129);
 }
 
+.available-to-attack {
+    background-color: green;
+}
+
 .white {
     background-color: #e7a94d;
 }

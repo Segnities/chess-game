@@ -7,11 +7,20 @@ interface CellProps {
 }
 
 export default function Cell({ cell, selected, onCellClick }: CellProps) {
+    const available = cell.available && !cell.figure;
     return (
         <div
-            className={["cell", cell.color, selected && "selected"].join(' ')}
+            className={
+                [
+                    "cell",
+                    cell.color,
+                    selected && "selected",
+                    available ? 'available-to-attack' : ''
+                ].join(' ')
+            }
             onClick={() => onCellClick(cell)}
         >
+            {available && <div className="available" />}
             {
                 cell.figure?.logo && (
                     <img

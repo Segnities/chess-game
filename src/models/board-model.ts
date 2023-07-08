@@ -40,9 +40,9 @@ export default class BoardModel {
         new KingModel(ColorsModel.WHITE, this.getCell(4, 7));
     }
 
-    private addQueens() { 
+    private addQueens() {
         new QueenModel(ColorsModel.BLACK, this.getCell(3, 0));
-        new QueenModel(ColorsModel.WHITE, this.getCell(3, 7)); 
+        new QueenModel(ColorsModel.WHITE, this.getCell(3, 7));
     }
 
     private addBishops() {
@@ -57,7 +57,7 @@ export default class BoardModel {
         new KnightModel(ColorsModel.BLACK, this.getCell(6, 0));
         new KnightModel(ColorsModel.WHITE, this.getCell(1, 7));
         new KnightModel(ColorsModel.WHITE, this.getCell(6, 7));
-    
+
     }
 
     private addRooks() {
@@ -65,8 +65,25 @@ export default class BoardModel {
         new RookModel(ColorsModel.BLACK, this.getCell(7, 0));
         new RookModel(ColorsModel.WHITE, this.getCell(0, 7));
         new RookModel(ColorsModel.WHITE, this.getCell(7, 7));
-    
-     }
+
+    }
+
+    public clone():BoardModel {
+        const boardClone = new BoardModel();
+        boardClone.cells = this.cells;
+
+        return boardClone;
+    }
+
+    public highlightCells(selectedCell: CellModel | null) {
+        for (let i = 0; i < this.cells.length; i++) {
+            const row = this.cells[i];
+            for (let j = 0; j < row.length; j++) {
+                const target = row[j];
+                target.available = !!selectedCell?.figure?.canMove(target);
+            }
+        }
+    }
 
     public addFigures() {
         this.addBishops();
