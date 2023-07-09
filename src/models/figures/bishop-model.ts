@@ -12,4 +12,11 @@ export default class BishopModel extends FigureModel {
         this.logo = color === ColorsModel.BLACK ? blackLogo : whiteLogo;
         this.name = FigureNames.BISHOP;
     }
+
+    canMove(target: CellModel): boolean {
+        if(!super.canMove(target)) {
+            return false;
+        } 
+        return true
+    }
 }

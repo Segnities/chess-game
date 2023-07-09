@@ -14,4 +14,11 @@ export default class QueenModel extends FigureModel {
         this.logo = color === ColorsModel.BLACK ? blackLogo : whiteLogo;
         this.name = FigureNames.QUEEN;
     }
+
+    canMove(target: CellModel): boolean {
+        if (!super.canMove(target)) {
+            return false;
+        }
+        return true
+    }
 }
