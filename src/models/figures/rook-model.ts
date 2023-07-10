@@ -18,6 +18,9 @@ export default class RookModel extends FigureModel {
         if (!super.canMove(target)) {
             return false;
         }
-        return true
+        if(this.cell.isEmptyVertical(target) || this.cell.isEmptyHorizontal(target)) {
+            return true;
+        } 
+        return false;
     }
 }
