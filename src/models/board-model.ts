@@ -15,9 +15,9 @@ export default class BoardModel {
             const row: CellModel[] = [];
             for (let j = 0; j < 8; j++) {
                 if ((i + j) % 2 !== 0) {
-                    row.push(new CellModel(this, i, j, ColorsModel.BLACK, null)); //Black cells
+                    row.push(new CellModel(this, j, i, ColorsModel.BLACK, null)); //Black cells
                 } else {
-                    row.push(new CellModel(this, i, j, ColorsModel.WHITE, null)); //White cells
+                    row.push(new CellModel(this, j, i, ColorsModel.WHITE, null)); //White cells
                 }
             }
             this.cells.push(row);
