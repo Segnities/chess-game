@@ -29,7 +29,14 @@ export default class CellModel {
         this.available = false;
     }
 
-    private isEmpty(): boolean {
+    isEnemy(target: CellModel): boolean {
+        if (target.figure) {
+            return this.figure?.color !== target.figure.color;
+        }
+        return false;
+    }
+
+    isEmpty(): boolean {
         return this.figure === null;
     }
 
