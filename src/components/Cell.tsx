@@ -15,7 +15,7 @@ export default function Cell({ cell, selected, onCellClick }: CellProps) {
                     "cell",
                     cell.color,
                     selected ? "selected" : '',
-                    available ? 'available-to-attack' : ''
+                    cell.available && cell.figure ? 'available-to-attack' : ''
                 ].join(' ')
             }
             onClick={() => onCellClick(cell)}

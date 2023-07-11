@@ -6,13 +6,21 @@ import BoardModel from "../models/board-model";
 
 import CellModel from "../models/cell-model";
 import Cell from "./Cell";
+import PlayerModel from "../models/player-model";
 
 interface BoardProps {
     board: BoardModel;
     setBoard: (board: BoardModel) => void;
+    currentPlayer: PlayerModel | null;
+    swapPlayer: () => void;
 }
 
-export default function Board({ board, setBoard }: BoardProps) {
+export default function Board({ 
+    board, 
+    setBoard,
+    currentPlayer,
+    swapPlayer
+}: BoardProps) {
     const [selectedCell, setSelectedCell] = React.useState<CellModel | null>(null);
 
     const updateBoard = () => {
@@ -28,8 +36,12 @@ export default function Board({ board, setBoard }: BoardProps) {
     const onCellClick = (cell: CellModel) => {
         if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
             selectedCell.moveFigure(cell);
+            swapPlayer();
             setSelectedCell(null);
         }  else {
+            if (cell.figure?.color !== currentPlayer?.color) {
+                return;
+            } 
             setSelectedCell(cell);
         }
     }

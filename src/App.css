@@ -39,7 +39,7 @@
 }
 
 .available-to-attack {
-    background-color: green;
+    background-color: green !important;
 }
 
 .white {
