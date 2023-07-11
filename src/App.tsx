@@ -8,6 +8,7 @@ import './App.css';
 import PlayerModel from "./models/player-model";
 import { ColorsModel } from "./models/colors-model";
 import LostFigures from "./components/LostFigures";
+import Timer from "./components/Timer";
 
 function App() {
   const [board, setBoard] = useState<BoardModel>(new BoardModel());
@@ -43,6 +44,7 @@ function App() {
         <h1>Chess game</h1>
         <h2>The turn of the {currentPlayer?.color}</h2>
       </div>
+      <Timer currentPlayer={currentPlayer} restart={restart}/>
       <Board
         board={board}
         setBoard={setBoard}
