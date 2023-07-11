@@ -7,6 +7,7 @@ import BoardModel from "./models/board-model";
 import './App.css';
 import PlayerModel from "./models/player-model";
 import { ColorsModel } from "./models/colors-model";
+import LostFigures from "./components/LostFigures";
 
 function App() {
   const [board, setBoard] = useState<BoardModel>(new BoardModel());
@@ -38,12 +39,26 @@ function App() {
 
   return (
     <div className="app">
+      <div className="app-info">
+        <h1>Chess game</h1>
+        <h2>The turn of the {currentPlayer?.color}</h2>
+      </div>
       <Board
         board={board}
         setBoard={setBoard}
         currentPlayer={currentPlayer}
         swapPlayer={swapPlayer}
       />
+      <div className="app-lost-figures">
+        <LostFigures
+          title="Lost black figures"
+          figures={board.lostBlackFigures}
+        />
+        <LostFigures 
+          title="Lost white figures"
+          figures={board.lostWhiteFigures}
+        />
+      </div>
     </div>
   )
 }

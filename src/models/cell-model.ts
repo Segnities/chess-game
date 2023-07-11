@@ -94,9 +94,20 @@ export default class CellModel {
         this.figure.cell = this;
     }
 
+    private addLostFigure(figure: FigureModel) {
+        if (figure.color === ColorsModel.BLACK) {
+            this.board.lostBlackFigures.push(figure);
+        } else if (figure.color === ColorsModel.WHITE) {
+            this.board.lostWhiteFigures.push(figure);
+        } 
+    }
+
     moveFigure(target: CellModel) {
         if (this.figure && this.figure?.canMove(target)) {
             this.figure?.moveFigure(target);
+            if (target.figure) {
+                this.addLostFigure(target.figure)
+            }
             target.setFigure(this.figure);
             this.figure = null;
         }

@@ -1,6 +1,7 @@
 import CellModel from "./cell-model";
 import { ColorsModel } from "./colors-model";
 import BishopModel from "./figures/bishop-model";
+import FigureModel from "./figures/figure-model";
 import KingModel from "./figures/king-model";
 import KnightModel from "./figures/knight-mode";
 import PawnModel from "./figures/pawn-model";
@@ -9,6 +10,8 @@ import RookModel from "./figures/rook-model";
 
 export default class BoardModel {
     cells: CellModel[][] = [];
+    lostBlackFigures: FigureModel[] = [];
+    lostWhiteFigures: FigureModel[] = []; 
 
     public initCells() {
         for (let i = 0; i < 8; i++) {
@@ -71,6 +74,8 @@ export default class BoardModel {
     public clone():BoardModel {
         const boardClone = new BoardModel();
         boardClone.cells = this.cells;
+        boardClone.lostBlackFigures = this.lostBlackFigures; 
+        boardClone.lostWhiteFigures = this.lostWhiteFigures;
 
         return boardClone;
     }

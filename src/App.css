@@ -5,10 +5,23 @@
 
 .app {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+}
+
+img.lost-figure-logo {
+    width: 18px;
+    height: 18px;
+}
+
+.app-info h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.app-info h2 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .board {
@@ -58,10 +71,47 @@
 }
 
 .lost {
-    height: calc(50vh - 60px);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
     padding: 30px;
-    margin-left: 50px;
+    margin: 20px 40px;
     background-color: lightgray;
+}
+
+.app-lost-figures {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.lost-figure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lost-black {
+    background-color: white;
+    color: black;
+    outline: 2px solid black;
+}
+
+.lost-white {
+    background-color: black;
+    color: white;
+    border-color: 2px solid black;
+    outline: 2px solid black;
+}
+
+.lost-figure > p {
+    font-weight: 200;
+    letter-spacing: 1px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.lost-figure > p::first-letter {
+    text-transform: uppercase;
 }
 
 @media screen and (max-width: 768px) {
@@ -79,5 +129,22 @@
         width: 42px;
         height: 42px;
         position: relative;
+    }
+
+    .app {
+        flex-direction: column;
+    }
+
+    .app-info {
+        text-align: center;
+    }
+
+    .lost {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .app-lost-figures {
+        flex-direction: row;
     }
 }
