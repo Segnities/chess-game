@@ -7,6 +7,7 @@
     width: 100vw;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
@@ -16,12 +17,28 @@ img.lost-figure-logo {
     height: 18px;
 }
 
+.app-info {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
 .app-info h1 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .app-info h2 {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.timer {
+    padding: 25px;
+}
+
+.timer > * {
+    margin: 15px 0;
 }
 
 .board {
