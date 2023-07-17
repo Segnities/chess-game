@@ -11,6 +11,7 @@ interface TimerProps {
 export default function Timer({
     restart
 }: TimerProps) {
+    
 
     const { whiteFiguresTime, blackFiguresTime } = useSelector((state: RootReducer) => state.timer);
 

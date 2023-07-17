@@ -1,21 +1,21 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useDispatch } from "react-redux";
 
-import { Drawer, Button } from "@mui/material";
-import { AiOutlineMenu } from "react-icons/ai";
 
 import Board from "./components/Board";
 
-import { startTimerAction, restartTimerAction } from "./store/timerReducer";
+import { restartTimerAction, startTimerAction } from "./store/timerReducer";
 
-import BoardModel from "./models/board-model";
-import PlayerModel from "./models/player-model";
-import { ColorsModel } from "./models/colors-model";
 import LostFigures from "./components/LostFigures";
-import Timer from "./components/Timer";
+import BoardModel from "./models/board-model";
+import { ColorsModel } from "./models/colors-model";
+import PlayerModel from "./models/player-model";
+
+import TimerMenu from "./components/TimerMenu";
 
 import './App.css';
+import LostFiguresMenu from "./components/LostFiguresMenu";
 
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
   const [blackPlayer, setBlackPlayer] = useState<PlayerModel>(new PlayerModel(ColorsModel.BLACK));
 
   const [leftDrawerOpen, setLeftDrawerOpen] = useState<boolean>(false);
+  const [rightDrawerOpen, setRightDrawerOpen] = useState<boolean>(false);
 
   const [currentPlayer, setCurrentPlayer] = useState<PlayerModel | null>(null);
 
@@ -69,23 +70,20 @@ function App() {
   return (
     <div className="app">
       <div className="app-info">
-        <Button variant="contained" onClick={() => setLeftDrawerOpen(true)}>
-          <AiOutlineMenu size={24} color="#fff" />
-        </Button>
-        <Drawer
-          anchor="left"
-          open={leftDrawerOpen}
-          onClose={() => setLeftDrawerOpen(false)}
-        >
-          <Timer
-            restart={restart}
-          />
-          
-        </Drawer>
+        <TimerMenu
+          setLeftDrawerOpen={setLeftDrawerOpen}
+          leftDrawerOpen={leftDrawerOpen}
+          restart={restart}
+        />
         <div>
           <h1>Chess game</h1>
           <h2>The turn of the {currentPlayer?.color}</h2>
         </div>
+        <LostFiguresMenu
+          board={board}
+          rightDrawerOpen={rightDrawerOpen}
+          setRightDrawerOpen={setRightDrawerOpen}
+        />
       </div>
       <Board
         board={board}
@@ -93,16 +91,7 @@ function App() {
         currentPlayer={currentPlayer}
         swapPlayer={swapPlayer}
       />
-      <div className="app-lost-figures">
-        <LostFigures
-          title="Lost black figures"
-          figures={board.lostBlackFigures}
-        />
-        <LostFigures
-          title="Lost white figures"
-          figures={board.lostWhiteFigures}
-        />
-      </div>
+      
     </div>
   )
 }

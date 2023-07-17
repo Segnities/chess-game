@@ -13,7 +13,8 @@ enum TimerReducerActionTypes {
 export const timerReducer = (state = defaultState, action: { type: TimerReducerActionTypes, playerColor: ColorsModel }) => {
     if (
         (action.type === TimerReducerActionTypes.START_TIMER) &&
-        (action.playerColor === ColorsModel.WHITE)
+        (action.playerColor === ColorsModel.WHITE) &&
+        (state.whiteFiguresTime > 0)
     ) {
         return {
             ...state,
@@ -24,7 +25,8 @@ export const timerReducer = (state = defaultState, action: { type: TimerReducerA
 
     if (
         (action.type === TimerReducerActionTypes.START_TIMER) &&
-        (action.playerColor === ColorsModel.BLACK)
+        (action.playerColor === ColorsModel.BLACK) && 
+        (state.blackFiguresTime > 0)
     ) {
         return {
             ...state,
