@@ -5,21 +5,37 @@ interface LostFiguresProps {
     figures: FigureModel[]
 }
 
+
 export default function LostFigures({
     title,
     figures
 }: LostFiguresProps) {
+
+    const getLostFigures = () => {
+        const lostFigures:FigureModel[] = [];
+        const namesArray: string[] = []
+
+        for (const fig of figures) {
+            if (!namesArray.includes(fig.name)) {
+                lostFigures.push(fig);
+            }
+            namesArray.push(fig.name);
+        }
+        return lostFigures;
+        
+    }
+
     return (
         <div className={[
             "lost",
             title.includes('white') ? 'lost-white' : 'lost-black'
-            ].join(' ')}>
+        ].join(' ')}>
             <h3>{title}</h3>
             {
-                figures.map(figure => (
-                    <div 
-                    key={figure.id}
-                    className="lost-figure"
+                getLostFigures().map(figure => (
+                    <div
+                        key={figure.id}
+                        className="lost-figure"
                     >
                         {
                             figure.logo && <img
@@ -28,7 +44,7 @@ export default function LostFigures({
                                 alt={figure.color + ' ' + figure.name}
                             />
                         }
-                        <p>{figure.name}</p> 
+                        <p>{figure.name} X {figures.filter(fig => fig.name === figure.name).length}</p>
                     </div>
                 ))
             }
