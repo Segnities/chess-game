@@ -15,8 +15,8 @@ interface BoardProps {
     swapPlayer: () => void;
 }
 
-export default function Board({ 
-    board, 
+export default function Board({
+    board,
     setBoard,
     currentPlayer,
     swapPlayer
@@ -38,35 +38,87 @@ export default function Board({
             selectedCell.moveFigure(cell);
             swapPlayer();
             setSelectedCell(null);
-        }  else {
+        } else {
             if (cell.figure?.color !== currentPlayer?.color) {
                 return;
-            } 
+            }
             setSelectedCell(cell);
         }
     }
 
     React.useEffect(() => {
         highlightCells();
-    }, [selectedCell])
+    }, [selectedCell?.id])
 
     return (
         <div className="board">
-            {board.cells.map((row,) => (
-                <React.Fragment key={nanoid()}>
-                    {
-                        row.map((cell) => (
-                            <Cell
-                                key={cell.id}
-                                cell={cell}
-                                selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
-                                onCellClick={onCellClick}
+            {
+                board.cells.map((row, rowIndex) => (
+                    <React.Fragment key={nanoid()}>
+                        {
+                            row.map((cell, columnIndex) => {
+                                const xAxisLabel = String.fromCharCode(97 + columnIndex);
+                                const yAxisLabel = 8 - rowIndex;
 
-                            />
-                        ))
-                    }
-                </React.Fragment>
-            ))}
+                                if (cell.x === 0 && cell.y >= 0) {
+                                    return (
+                                        <div className="cell-positionY__container cell-position__container" key={cell.id}>
+                                            <span className="left-cells__position">
+                                                {cell.x === 0 ? yAxisLabel : null}
+                                            </span>
+                                            <span className="right-cells__position">
+                                                {yAxisLabel}
+                                            </span>
+                                            {
+                                                cell.x === 0 && cell.y === 0 ? (
+                                                    <span className="top-cells__position">a</span>
+                                                ) : null
+                                            }
+                                            {
+                                                cell.x === 0 && cell.y === 7 ? (
+                                                    <span className="bottom-cells__position">a</span>
+                                                ) : null
+                                            }
+                                            <Cell
+                                                key={cell.id}
+                                                cell={cell}
+                                                selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
+                                                onCellClick={onCellClick}
+
+                                            />
+                                        </div>
+                                    );
+                                } else if (cell.x >= 0 && cell.y === 0) {
+                                    return (
+                                        <div className="cell-positionX__container cell-position__container">
+                                            <span className="top-cells__position">{xAxisLabel}</span>
+                                            <span className="bottom-cells__position">{xAxisLabel}</span>
+                                            <Cell
+                                                key={cell.id}
+                                                cell={cell}
+                                                selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
+                                                onCellClick={onCellClick}
+
+                                            />
+                                        </div>
+                                    )
+                                } else if (cell.x >= 1 && cell.y >= 1) {
+                                    return (
+                                        <Cell
+                                            key={cell.id}
+                                            cell={cell}
+                                            selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
+                                            onCellClick={onCellClick}
+                                        />
+                                    );
+                                }
+
+                                return null;
+                            })
+                        }
+                    </React.Fragment>
+                ))
+            }
         </div>
     );
 }

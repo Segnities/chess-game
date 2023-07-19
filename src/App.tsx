@@ -7,15 +7,17 @@ import Board from "./components/Board";
 
 import { restartTimerAction, startTimerAction } from "./store/timerReducer";
 
-import LostFigures from "./components/LostFigures";
 import BoardModel from "./models/board-model";
 import { ColorsModel } from "./models/colors-model";
 import PlayerModel from "./models/player-model";
 
 import TimerMenu from "./components/TimerMenu";
 
-import './App.css';
 import LostFiguresMenu from "./components/LostFiguresMenu";
+import Title from "./components/Title";
+
+
+import './App.css';
 
 
 function App() {
@@ -50,7 +52,7 @@ function App() {
       if (currentPlayer?.color) {
         dispatch(startTimerAction(currentPlayer.color));
       }
-    }, 1000)
+    }, 1000);
   }
 
   const swapPlayer = () => {
@@ -75,10 +77,7 @@ function App() {
           leftDrawerOpen={leftDrawerOpen}
           restart={restart}
         />
-        <div>
-          <h1>Chess game</h1>
-          <h2>The turn of the {currentPlayer?.color}</h2>
-        </div>
+        <Title currentPlayer={currentPlayer} />
         <LostFiguresMenu
           board={board}
           rightDrawerOpen={rightDrawerOpen}
@@ -91,7 +90,7 @@ function App() {
         currentPlayer={currentPlayer}
         swapPlayer={swapPlayer}
       />
-      
+
     </div>
   )
 }
