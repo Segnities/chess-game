@@ -3,6 +3,7 @@ import { Drawer } from "@mui/material";
 import BoardModel from "../models/board-model";
 
 import { RxHamburgerMenu } from "react-icons/rx";
+import GameHistory from "./GameHistory";
 import Timer from "./Timer";
 
 interface LeftMenuProps {
@@ -35,6 +36,9 @@ export default function LeftMenu(props: LeftMenuProps) {
                 <div className="left-menu__drawer">
                     <Timer restart={restart} />
                 </div>
+                <GameHistory 
+                    history={gameHistrory}
+                />
             </Drawer>
         </div>
     );

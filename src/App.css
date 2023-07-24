@@ -35,7 +35,7 @@ img.lost-figure-logo {
 }
 
 .timer {
-    padding: 25px;
+    padding: 10px;
 }
 
 .timer>* {
@@ -83,6 +83,10 @@ img.lost-figure-logo {
 .right-menu__image img:hover {
     animation: borderRoll 150ms infinite ease-in;
     cursor: pointer;
+}
+
+.game-history__container {
+    padding: 10px 15px;
 }
 
 .board {

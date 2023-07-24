@@ -10,16 +10,18 @@ import PlayerModel from "../models/player-model";
 
 interface BoardProps {
     board: BoardModel;
-    setBoard: (board: BoardModel) => void;
+    updateBoardAndStep: (board: BoardModel) => void;
     currentPlayer: PlayerModel | null;
     swapPlayer: () => void;
+    setBoard: (board: BoardModel) => void;
 }
 
 export default function Board({
     board,
-    setBoard,
+    updateBoardAndStep,
     currentPlayer,
-    swapPlayer
+    swapPlayer,
+    setBoard
 }: BoardProps) {
     const [selectedCell, setSelectedCell] = React.useState<CellModel | null>(null);
 
@@ -38,6 +40,8 @@ export default function Board({
             selectedCell.moveFigure(cell);
             swapPlayer();
             setSelectedCell(null);
+            updateBoardAndStep(board);
+
         } else {
             if (cell.figure?.color !== currentPlayer?.color) {
                 return;
