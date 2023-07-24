@@ -65,6 +65,10 @@ img.lost-figure-logo {
     transition: ease-in-out all 220ms;
 }
 
+.left-menu__drawer {
+    padding: 15px;
+}
+
 .board {
     width: calc(85px * 8);
     height: calc(85px * 8);

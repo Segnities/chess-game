@@ -1,4 +1,9 @@
+
+import { Drawer, Button } from "@mui/material";
 import BoardModel from "../models/board-model";
+
+import { RxHamburgerMenu } from "react-icons/rx";
+import Timer from "./Timer";
 
 interface LeftMenuProps {
     setLeftDrawerOpen: (isOpen: boolean) => void;
@@ -7,16 +12,25 @@ interface LeftMenuProps {
     restart: () => void;
 }
 
-export default function LeftMenu(props:LeftMenuProps) {
-    /* const {
+export default function LeftMenu(props: LeftMenuProps) {
+    const {
         leftDrawerOpen,
         setLeftDrawerOpen,
         gameHistrory,
         restart
-    } = props; */
+    } = props;
     return (
         <div>
-
+            <RxHamburgerMenu size={34} color="#000" onClick={() => setLeftDrawerOpen(true)} />
+            <Drawer
+                anchor="left"
+                open={leftDrawerOpen}
+                onClose={() => setLeftDrawerOpen(false)}
+            >
+                <div className="left-menu__drawer">
+                    <Timer restart={restart} />
+                </div>
+            </Drawer>
         </div>
     );
 }
