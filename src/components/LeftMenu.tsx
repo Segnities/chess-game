@@ -1,5 +1,5 @@
 
-import { Drawer, Button } from "@mui/material";
+import { Drawer } from "@mui/material";
 import BoardModel from "../models/board-model";
 
 import { RxHamburgerMenu } from "react-icons/rx";

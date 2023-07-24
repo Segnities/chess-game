@@ -73,6 +73,18 @@ img.lost-figure-logo {
     cursor: pointer;
 }
 
+.right-menu__image img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 3px dashed #000;
+}
+
+.right-menu__image img:hover {
+    animation: borderRoll 150ms infinite ease-in;
+    cursor: pointer;
+}
+
 .board {
     width: calc(85px * 8);
     height: calc(85px * 8);
@@ -266,5 +278,13 @@ img.lost-figure-logo {
     .cell {
         width: 46px;
         height: 46px;
+    }
+}
+
+@keyframes borderRoll {
+    from {
+        border: 3px dashed #000;
+    } to {
+        border: 2px solid #000;
     }
 }
