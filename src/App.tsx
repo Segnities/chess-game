@@ -11,17 +11,17 @@ import BoardModel from "./models/board-model";
 import { ColorsModel } from "./models/colors-model";
 import PlayerModel from "./models/player-model";
 
-import TimerMenu from "./components/TimerMenu";
+import LeftMenu from "./components/LeftMenu";
 
-import LostFiguresMenu from "./components/LostFiguresMenu";
+import RightMenu from "./components/RightMenu";
 import Title from "./components/Title";
-
 
 import './App.css';
 
 
 function App() {
   const [board, setBoard] = useState<BoardModel>(new BoardModel());
+  const [gameHistory, setGameHistory] = useState<BoardModel[]>([]);
 
   const [whitePlayer, setWhitePlayer] = useState<PlayerModel>(new PlayerModel(ColorsModel.WHITE));
   const [blackPlayer, setBlackPlayer] = useState<PlayerModel>(new PlayerModel(ColorsModel.BLACK));
@@ -58,12 +58,11 @@ function App() {
   const swapPlayer = () => {
     setCurrentPlayer(currentPlayer?.color === ColorsModel.WHITE ? blackPlayer : whitePlayer);
   };
-
+  
   useEffect(() => {
     restart();
     setCurrentPlayer(whitePlayer);
   }, []);
-
 
   useEffect(() => {
     startTimer();
@@ -72,13 +71,14 @@ function App() {
   return (
     <div className="app">
       <div className="app-info">
-        <TimerMenu
+        <LeftMenu
           setLeftDrawerOpen={setLeftDrawerOpen}
           leftDrawerOpen={leftDrawerOpen}
           restart={restart}
+          gameHistrory={gameHistory}
         />
         <Title currentPlayer={currentPlayer} />
-        <LostFiguresMenu
+        <RightMenu
           board={board}
           rightDrawerOpen={rightDrawerOpen}
           setRightDrawerOpen={setRightDrawerOpen}
@@ -95,4 +95,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
