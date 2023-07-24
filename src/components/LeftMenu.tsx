@@ -21,7 +21,12 @@ export default function LeftMenu(props: LeftMenuProps) {
     } = props;
     return (
         <div>
-            <RxHamburgerMenu size={34} color="#000" onClick={() => setLeftDrawerOpen(true)} />
+            <RxHamburgerMenu
+                size={34}
+                color="#000"
+                onClick={() => setLeftDrawerOpen(true)}
+                className="left-menu__hamburger"
+            />
             <Drawer
                 anchor="left"
                 open={leftDrawerOpen}

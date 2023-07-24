@@ -69,6 +69,10 @@ img.lost-figure-logo {
     padding: 15px;
 }
 
+.left-menu__hamburger {
+    cursor: pointer;
+}
+
 .board {
     width: calc(85px * 8);
     height: calc(85px * 8);
