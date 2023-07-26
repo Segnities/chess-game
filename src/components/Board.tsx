@@ -66,7 +66,9 @@ export default function Board({
 
                                 if (cell.x === 0 && cell.y >= 0) {
                                     return (
-                                        <div className="cell-positionY__container cell-position__container" key={cell.id}>
+                                        <div className="cell-positionY__container cell-position__container"
+                                            key={cell.id}
+                                        >
                                             <span className="left-cells__position">
                                                 {cell.x === 0 ? yAxisLabel : null}
                                             </span>
@@ -94,7 +96,10 @@ export default function Board({
                                     );
                                 } else if (cell.x >= 0 && cell.y === 0) {
                                     return (
-                                        <div className="cell-positionX__container cell-position__container">
+                                        <div
+                                            className="cell-positionX__container cell-position__container"
+                                            key={cell.id}
+                                        >
                                             <span className="top-cells__position">{xAxisLabel}</span>
                                             <span className="bottom-cells__position">{xAxisLabel}</span>
                                             <Cell

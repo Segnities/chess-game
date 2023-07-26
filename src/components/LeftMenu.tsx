@@ -5,12 +5,18 @@ import BoardModel from "../models/board-model";
 import { RxHamburgerMenu } from "react-icons/rx";
 import GameHistory from "./GameHistory";
 import Timer from "./Timer";
+import PlayerModel from "../models/player-model";
 
 interface LeftMenuProps {
+    whitePlayer: PlayerModel | null;
+    blackPlayer: PlayerModel | null;
     setLeftDrawerOpen: (isOpen: boolean) => void;
     leftDrawerOpen: boolean;
     gameHistrory: BoardModel[]
     restart: () => void;
+    setBoard: (board:BoardModel)=> void;
+    setCurrentPlayer: (player:PlayerModel | null)=> void;
+    setCurrentStep: (step:number) => void;
 }
 
 export default function LeftMenu(props: LeftMenuProps) {
@@ -18,7 +24,7 @@ export default function LeftMenu(props: LeftMenuProps) {
         leftDrawerOpen,
         setLeftDrawerOpen,
         gameHistrory,
-        restart
+        restart,
     } = props;
     return (
         <div>
@@ -38,6 +44,11 @@ export default function LeftMenu(props: LeftMenuProps) {
                 </div>
                 <GameHistory 
                     history={gameHistrory}
+                    whitePlayer={props.whitePlayer}
+                    blackPlayer={props.blackPlayer}
+                    setBoard={props.setBoard}
+                    setCurrentPlayer={props.setCurrentPlayer}
+                    setCurrentStep={props.setCurrentStep}
                 />
             </Drawer>
         </div>

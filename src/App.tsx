@@ -88,9 +88,14 @@ function App() {
     <div className="app">
       <div className="app-info">
         <LeftMenu
+          whitePlayer={whitePlayer}
+          blackPlayer={blackPlayer}
+          setBoard={setBoard}
           setLeftDrawerOpen={setLeftDrawerOpen}
           leftDrawerOpen={leftDrawerOpen}
           restart={restart}
+          setCurrentPlayer={setCurrentPlayer}
+          setCurrentStep={setCurrentStep}
           gameHistrory={gameHistory}
         />
         <Title currentPlayer={currentPlayer} />
