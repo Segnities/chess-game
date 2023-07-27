@@ -6,13 +6,18 @@ import {
     Typography
 } from "@mui/material";
 
-import BoardModel from "../models/board-model";
 import { nanoid } from "nanoid";
+import { useDispatch, useSelector } from "react-redux";
+
+import { blockBoardAction, unblockBoardAction } from "../store/blockReducer";
+
+import BoardModel from "../models/board-model";
 import PlayerModel from "../models/player-model";
+import { RootReducer } from "../store";
 
 interface GameHistoryProps {
-    history: BoardModel[];
     whitePlayer: PlayerModel | null;
+    history: BoardModel[];
     blackPlayer: PlayerModel | null;
     setBoard: (board: BoardModel) => void;
     setCurrentPlayer: (player: PlayerModel | null) => void;
@@ -24,12 +29,19 @@ export default function GameHistory({
     setBoard,
     ...props
 }: GameHistoryProps) {
-
-    const pickHistoryStep = (board: BoardModel, index: number) => {
-        const isWhitePlayer = index % 2 === 0;
-        setBoard(board);
+    const dispatch = useDispatch();
+    const { isBlocked } = useSelector((state: RootReducer) => state.block);
+    const pickHistoryStep = (index: number) => {
+        const isWhitePlayer = index % 2 === 1;
+        if (index === history.length) {
+            dispatch(unblockBoardAction());
+        } else if (!isBlocked && history.length !== history.length) {
+            dispatch(blockBoardAction());
+        }
+        setBoard(history[index]);
         props.setCurrentStep(index);
         props.setCurrentPlayer(isWhitePlayer ? props.whitePlayer : props.blackPlayer);
+
     }
 
     return (
@@ -47,9 +59,10 @@ export default function GameHistory({
                         {
                             history.map((board, index) => (
                                 <ListItem
-                                    onClick={() => pickHistoryStep(board, index)
-                                    }
                                     key={nanoid()}
+                                    className="history-list__item"
+                                    onClick={() => pickHistoryStep(index)
+                                    }
                                 >
                                     <ListItemText
                                         primary={index + 1 + ' step'}

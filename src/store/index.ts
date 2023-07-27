@@ -1,9 +1,11 @@
 import { combineReducers, createStore } from "redux";
 import { timerReducer } from "./timerReducer";
+import { blockReducer } from "./blockReducer";
 
 
 const rootReducer = combineReducers({
-    timer: timerReducer
+    timer: timerReducer,
+    block: blockReducer,
 });
 
 

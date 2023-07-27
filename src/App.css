@@ -46,6 +46,18 @@ img.lost-figure-logo {
     cursor: pointer;
 }
 
+.history-list__item {
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 5px 0;
+    border-radius: 9px;
+}
+
+.history-list__item:hover {
+    background-color: rgb(232, 232, 229);
+    transition: 240ms backgroundColor ease-in-out;
+}
+
 .lost-figure-img {
     width: 56px;
     height: 56px;

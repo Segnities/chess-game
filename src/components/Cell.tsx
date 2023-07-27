@@ -1,4 +1,7 @@
+import { useSelector } from "react-redux";
+import { RootReducer } from "../store";
 import CellModel from "../models/cell-model";
+
 
 interface CellProps {
     cell: CellModel;
@@ -7,7 +10,16 @@ interface CellProps {
 }
 
 export default function Cell({ cell, selected, onCellClick }: CellProps) {
+    const { isBlocked } = useSelector((state: RootReducer) => state.block);
+
     const available = cell.available && !cell.figure;
+
+    const hanldeFigureAction = () => {
+        if (!isBlocked) {
+            onCellClick(cell);
+        }
+    }
+
     return (
         <div
             className={
@@ -18,7 +30,7 @@ export default function Cell({ cell, selected, onCellClick }: CellProps) {
                     cell.available && cell.figure ? 'available-to-attack' : ''
                 ].join(' ')
             }
-            onClick={() => onCellClick(cell)}
+            onClick={hanldeFigureAction}
         >
             {available && <div className="available" />}
             {
